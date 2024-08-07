@@ -1,0 +1,65 @@
+1) npx create-next-app@latest .
+2) npm i mysql2
+3) crear un archivo llamado mysql.js en una carpeta libs  dentro de app 
+
+import mysql from 'mysql2/promise'
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'todo',
+    waitForConnections: true
+})
+export default pool
+
+
+4) crea las rutas dentro la carpeta app crea una carpeta llamada api y dentro una llamada todo
+    asi 
+        app/api/todo
+        y dentro un archivo route.jsx y una carpeta [id] y dentro otro archivo route.jsx
+
+5) Crear el archivo middleware.js
+    import { NextResponse } from 'next/server';
+    export async function middleware(req) {
+        const response = NextResponse.next();
+        // Configura las cabeceras CORS
+        response.headers.set('Access-Control-Allow-Origin', '*'); // Cambia esto si es necesario
+        response.headers.set('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+        response.headers.set('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Content-Type');
+        // Manejo de la solicitud OPTIONS
+        if (req.method === 'OPTIONS') {
+            return response;
+        }
+        return response;
+        }
+        export const config = {
+        matcher: ['/api/:path*'],
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
